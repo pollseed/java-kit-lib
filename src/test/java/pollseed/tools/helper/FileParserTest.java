@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class FileParserTest {
 
-    private final String WORK_DIR = String.format("%s%s", System.getProperty("user.dir"), "/src/test/resources/pollseed/tools/helper/");
+    private final String WORK_DIR = String.format("%s%s", System.getProperty("user.dir"), "/src/test/java/pollseed/tools/helper/resources/");
     private final String OUTPUT_DIR = String.format("%s%s", WORK_DIR, "output/test_FileParser.txt");
     private final String INPUT_DIR = String.format("%s%s", WORK_DIR, "test_FileParser.txt");
     private final String INPUT_OK_DIR = String.format("%s%s", WORK_DIR, "test_FileParser_OK.txt");

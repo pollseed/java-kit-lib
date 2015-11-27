@@ -1,0 +1,112 @@
+apply plugin: "java"
+apply plugin: "maven"
+apply plugin: "eclipse"
+
+group = "pollseed"
+version = 1.0
+
+def jdkVersion = JavaVersion.VERSION_1_8
+def defaultEncoding = 'UTF-8'
+
+compileJava {
+    sourceCompatibility = jdkVersion
+    targetCompatibility = jdkVersion
+}
+
+[compileJava, compileTestJava]*.options*.encoding = defaultEncoding
+processResources.destinationDir = compileJava.destinationDir
+
+javadoc {
+    options.encoding(defaultEncoding)
+    options.setEncoding(defaultEncoding)
+    title = 'v0.01'
+}
+
+repositories {
+    mavenCentral()
+    maven {url 'http://maven.seasar.org/maven2'}
+}
+
+/*
+sourceSets.all { set ->
+    def jarTask = task("${set.name}Jar", type: Jar) {
+        baseName = baseName + "-$set.name"
+        from set.output
+    }
+    artifacts {
+        archives jarTask
+    }
+}
+*/
+
+sourceSets {
+    api
+    impl
+}
+
+dependencies {
+    compile 'commons-codec:commons-codec:1.5'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'commons-io:commons-io:2.4'
+    compile 'org.jsoup:jsoup:1.8.3'
+    compile 'commons-codec:commons-codec:1.10'
+    
+    apiCompile 'commons-codec:commons-codec:1.5'
+    apiCompile 'org.apache.commons:commons-lang3:3.4'
+    apiCompile 'commons-io:commons-io:2.4'
+    apiCompile 'org.jsoup:jsoup:1.8.3'
+    apiCompile 'commons-codec:commons-codec:1.10'
+
+    implCompile sourceSets.api.output
+    implCompile 'commons-codec:commons-codec:1.5'
+    implCompile 'org.apache.commons:commons-lang3:3.4'
+    implCompile 'commons-io:commons-io:2.4'
+    implCompile 'org.jsoup:jsoup:1.8.3'
+    implCompile 'commons-codec:commons-codec:1.10'
+
+    testCompile 'junit:junit:4.9'
+    testCompile 'commons-codec:commons-codec:1.5'
+    testCompile 'org.apache.commons:commons-lang3:3.4'
+    testCompile 'commons-io:commons-io:2.4'
+    testCompile 'org.jsoup:jsoup:1.8.3'
+    testCompile 'commons-codec:commons-codec:1.10'
+    testCompile sourceSets.api.output
+    testCompile sourceSets.impl.output
+    runtime configurations.apiRuntime
+    runtime configurations.implRuntime
+}
+
+jar {
+    from sourceSets.api.output
+    from sourceSets.impl.output
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri("${buildDir}/repo"))
+
+            addFilter("main") { artifact, file -> artifact.name == project.name }
+            ["api", "impl"].each { type ->
+                addFilter(type) { artifact, file -> artifact.name.endsWith("-$type") }
+                
+                // We now have to map our configurations to the correct maven scope for each pom
+                ["compile", "runtime"].each { scope ->
+                    configuration = configurations[type + scope.capitalize()]
+                    ["main", type].each { pomName ->
+                        pom(pomName).scopeMappings.addMapping 1, configuration, scope
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.8'
+}

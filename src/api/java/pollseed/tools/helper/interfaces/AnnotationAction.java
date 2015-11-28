@@ -12,7 +12,9 @@ public interface AnnotationAction {
 
     /**
      * メイン処理
-     *
+     * 
+     * @param <T>
+     *            型
      * @param actionGenerator
      *            {@link AnnotationGenerator}
      * @param clazz

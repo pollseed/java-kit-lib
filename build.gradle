@@ -19,7 +19,7 @@ processResources.destinationDir = compileJava.destinationDir
 javadoc {
     options.encoding(defaultEncoding)
     options.setEncoding(defaultEncoding)
-    title = 'v0.01'
+    title = 'v0.0.0'
 }
 
 repositories {
@@ -39,10 +39,12 @@ sourceSets.all { set ->
 }
 */
 
+
 sourceSets {
     api
     impl
 }
+
 
 dependencies {
     compile 'commons-codec:commons-codec:1.5'
@@ -81,6 +83,19 @@ jar {
     from sourceSets.impl.output
 }
 
+/*
+sourceSets {
+    main {
+        java {
+            srcDir 'src/api/java'
+        }
+        resources {
+            srcDir 'src/test/java'
+        }
+    }
+}
+*/
+
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -103,10 +118,20 @@ uploadArchives {
     }
 }
 
+javadoc {
+    options.charSet = 'UTF-8'
+    options.encoding = 'UTF-8'
+}
+
+task intTestJavadoc(type: Javadoc) {
+    source sourceSets.api.output
+    source sourceSets.impl.output
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.8'
+    gradleVersion = '2.9'
 }

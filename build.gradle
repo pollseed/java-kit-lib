@@ -52,12 +52,16 @@ dependencies {
     compile 'commons-io:commons-io:2.4'
     compile 'org.jsoup:jsoup:1.8.3'
     compile 'commons-codec:commons-codec:1.10'
+    compile 'com.tictactec:ta-lib:0.4.0'
+    compile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
     
     apiCompile 'commons-codec:commons-codec:1.5'
     apiCompile 'org.apache.commons:commons-lang3:3.4'
     apiCompile 'commons-io:commons-io:2.4'
     apiCompile 'org.jsoup:jsoup:1.8.3'
     apiCompile 'commons-codec:commons-codec:1.10'
+    apiCompile 'com.tictactec:ta-lib:0.4.0'
+    apiCompile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
 
     implCompile sourceSets.api.output
     implCompile 'commons-codec:commons-codec:1.5'
@@ -65,6 +69,8 @@ dependencies {
     implCompile 'commons-io:commons-io:2.4'
     implCompile 'org.jsoup:jsoup:1.8.3'
     implCompile 'commons-codec:commons-codec:1.10'
+    implCompile 'com.tictactec:ta-lib:0.4.0'
+    implCompile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
 
     testCompile 'junit:junit:4.9'
     testCompile 'commons-codec:commons-codec:1.5'
@@ -72,6 +78,7 @@ dependencies {
     testCompile 'commons-io:commons-io:2.4'
     testCompile 'org.jsoup:jsoup:1.8.3'
     testCompile 'commons-codec:commons-codec:1.10'
+    testCompile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
     testCompile sourceSets.api.output
     testCompile sourceSets.impl.output
     runtime configurations.apiRuntime

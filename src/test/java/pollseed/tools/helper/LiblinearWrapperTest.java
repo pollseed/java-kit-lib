@@ -2,6 +2,8 @@ package liblinearWrapper;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import printer.CommandPrinter;
@@ -12,10 +14,7 @@ import de.bwaldvogel.liblinear.Problem;
 import de.bwaldvogel.liblinear.SolverType;
 
 public class LiblinearWrapperTest implements CommandPrinter {
-    private static final int SOLVER_TYPE_COUNT;
-    static {
-        SOLVER_TYPE_COUNT = SolverType.values().length;
-    }
+    private static final int SOLVER_TYPE_COUNT = SolverType.values().length;
 
     @Test
     public void test_predict() {
@@ -23,13 +22,13 @@ public class LiblinearWrapperTest implements CommandPrinter {
         final Problem problem = createProblem();
         final Feature[] instance = createInstance();
 
-        int i = 0;
-        for (final SolverType type : SolverType.values()) {
+        int[] idx = { 0 };
+        Arrays.stream(SolverType.values()).forEach(type -> {
             lnLine(type);
             lw.predict(problem, createParameter(type), instance);
-            i++;
-        }
-        assertEquals(SOLVER_TYPE_COUNT, i);
+            idx[0]++;
+        });
+        assertEquals(SOLVER_TYPE_COUNT, idx[0]);
     }
 
     /**

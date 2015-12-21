@@ -1,10 +1,11 @@
-package liblinearWrapper;
+package pollseed.tools.helper;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import pollseed.common.ComparatorFeature;
 import de.bwaldvogel.liblinear.Feature;
 import de.bwaldvogel.liblinear.Linear;
 import de.bwaldvogel.liblinear.Model;

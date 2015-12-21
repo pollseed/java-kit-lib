@@ -1,4 +1,4 @@
-package liblinearWrapper;
+package pollseed.common;
 
 import java.util.Comparator;
 

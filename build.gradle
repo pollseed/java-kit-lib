@@ -54,6 +54,7 @@ dependencies {
     compile 'commons-codec:commons-codec:1.10'
     compile 'com.tictactec:ta-lib:0.4.0'
     compile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
+    compile 'de.bwaldvogel:liblinear:1.95'
     
     apiCompile 'commons-codec:commons-codec:1.5'
     apiCompile 'org.apache.commons:commons-lang3:3.4'
@@ -62,6 +63,7 @@ dependencies {
     apiCompile 'commons-codec:commons-codec:1.10'
     apiCompile 'com.tictactec:ta-lib:0.4.0'
     apiCompile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
+    apiCompile 'de.bwaldvogel:liblinear:1.95'
 
     implCompile sourceSets.api.output
     implCompile 'commons-codec:commons-codec:1.5'
@@ -71,6 +73,7 @@ dependencies {
     implCompile 'commons-codec:commons-codec:1.10'
     implCompile 'com.tictactec:ta-lib:0.4.0'
     implCompile 'com.atilika.kuromoji:kuromoji-jumandic:0.9.0'
+    implCompile 'de.bwaldvogel:liblinear:1.95'
 
     testCompile 'junit:junit:4.9'
     testCompile 'commons-codec:commons-codec:1.5'

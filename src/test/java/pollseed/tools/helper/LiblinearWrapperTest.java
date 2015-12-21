@@ -1,4 +1,4 @@
-package liblinearWrapper;
+package pollseed.tools.helper;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import printer.CommandPrinter;
+import pollseed.tools.helper.interfaces.CommandPrinter;
 import de.bwaldvogel.liblinear.Feature;
 import de.bwaldvogel.liblinear.FeatureNode;
 import de.bwaldvogel.liblinear.Parameter;

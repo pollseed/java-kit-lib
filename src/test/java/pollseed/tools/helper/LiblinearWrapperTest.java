@@ -22,7 +22,7 @@ public class LiblinearWrapperTest implements CommandPrinter {
         final Problem problem = createProblem();
         final Feature[] instance = createInstance();
 
-        int[] idx = { 0 };
+        final int[] idx = { 0 };
         Arrays.stream(SolverType.values()).forEach(type -> {
             lnLine(type);
             lw.predict(problem, createParameter(type), instance);
@@ -66,7 +66,7 @@ public class LiblinearWrapperTest implements CommandPrinter {
         p.l = 4;
         p.n = 6;
         p.y = new double[] { 1, 2, 1, 2, 3 };
-        Feature[][] fs = new Feature[][] {
+        final Feature[][] fs = new Feature[][] {
             { new FeatureNode(2, 0.1), new FeatureNode(3, 0.2), new FeatureNode(6, 1),
                 new FeatureNode(1, 1) },
             { new FeatureNode(1, 0.4), new FeatureNode(6, 1), new FeatureNode(2, 1) },
